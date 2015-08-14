@@ -21,8 +21,10 @@ function redraw() {
 
   if (!anchor) {
     anchor = document.createElement("a");
-    anchor.className = "minibutton sidebar-button bl-ocks-button";
-    anchor.innerHTML = '<span class="blocks-org-icon octicon octicon-link-external"></span><span  style="padding-left: 1em;">bl.ocks.org</span>';
+    anchor.className = "btn btn-block sidebar-button bl-ocks-button";
+    anchor.style.margin = "15px 0";
+    anchor.style.color = "steelblue";
+    anchor.innerHTML = '<span class="octicon octicon-link-external"></span><span> bl.ocks.org</span>';
   }
 
   // Disconnect to avoid observing our own mutations.
