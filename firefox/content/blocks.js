@@ -10,14 +10,14 @@ window.addEventListener("load", function load() {
     redraw();
 
     function redraw() {
-      var container = document.querySelector(".gist-sidebar");
+      var container = document.querySelector(".gist-sidebar") || document.querySelector(".repository-sidebar");
       if (!container) return;
 
       var parts = document.location.pathname.substring(1).split("/"),
           user = parts[0],
           id = parts[1],
           sha = parts[2];
-      if (!user || !/^[a-z0-9][a-z0-9]*$/i.test(user)) return;
+      if (!user || !/^[a-z0-9][a-z0-9\-_]*$/i.test(user)) return;
       if (!/^([0-9]+|[0-9a-f]{20})$/.test(id)) id = null;
       if (!/^[0-9a-f]{40}$/.test(sha)) sha = null;
 
@@ -26,8 +26,10 @@ window.addEventListener("load", function load() {
 
       if (!anchor) {
         anchor = document.createElement("a");
-        anchor.className = "minibutton sidebar-button bl-ocks-button";
-        anchor.innerHTML = '<span class="octicon octicon-link-external"></span>bl.ocks.org';
+        anchor.className = "btn btn-block sidebar-button bl-ocks-button";
+        anchor.style.margin = "15px 0";
+        anchor.style.color = "steelblue";
+        anchor.innerHTML = '<span class="octicon octicon-link-external"></span><span> bl.ocks.org</span>';
       }
 
       // Disconnect to avoid observing our own mutations.
