@@ -28,8 +28,7 @@ window.addEventListener("load", function load() {
         anchor = document.createElement("a");
         anchor.className = "btn btn-block sidebar-button bl-ocks-button";
         anchor.style.margin = "15px 0";
-        anchor.style.color = "steelblue";
-        anchor.innerHTML = '<span class="octicon octicon-link-external"></span><span> bl.ocks.org</span>';
+        anchor.innerHTML = '<span class="octicon octicon-link-external"></span><img src="chrome://bl.ocks.org/content/icon-32.png" id="blocks-button-icon" style="position: absolute; bottom: 0; left: 4px"><span> bl.ocks.org</span>';
       }
 
       // Disconnect to avoid observing our own mutations.

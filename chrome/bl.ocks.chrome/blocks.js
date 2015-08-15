@@ -17,14 +17,14 @@ function redraw() {
   if (!/^[0-9a-f]{40}$/.test(sha)) sha = null;
 
   var anchor = container.querySelector(".bl-ocks-button"),
-      href = "http://bl.ocks.org/" + user + (id ? "/" + id + (sha ? "/" + sha : "") : "");
+      href = "http://bl.ocks.org/" + user + (id ? "/" + id + (sha ? "/" + sha : "") : ""),
+      blocksIconURL = chrome.extension.getURL("icon-32.png");
 
   if (!anchor) {
     anchor = document.createElement("a");
     anchor.className = "btn btn-block sidebar-button bl-ocks-button";
     anchor.style.margin = "15px 0";
-    anchor.style.color = "steelblue";
-    anchor.innerHTML = '<span class="octicon octicon-link-external"></span><span> bl.ocks.org</span>';
+    anchor.innerHTML = '<span class="octicon octicon-link-external"><img id="blocks-button-icon" style="position: absolute; bottom: 0; left: 4px"></span> bl.ocks.org ';
   }
 
   // Disconnect to avoid observing our own mutations.
@@ -32,6 +32,7 @@ function redraw() {
     observer.disconnect();
     anchor.href = href;
     container.appendChild(anchor);
+    document.getElementById("blocks-button-icon").src = blocksIconURL;
     observer.observe(document.documentElement, {childList: true, subtree: true});
   }
 }
